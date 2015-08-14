@@ -1,0 +1,19 @@
+﻿가람
+-폰트, 로고, 배경
+
+빛나누나
+-hover, 팀원
+
+근우
+-backstretch
+
+창현
+-portfolio modal
+
+
+
+
+
+
+#More
+-login, 회원가입, 프로필 수정
