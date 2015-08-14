@@ -8,8 +8,7 @@
 -backstretch
 
 창현
--portfolio modal
-
+-login 끄적끄적
 
 
 
@@ -17,6 +16,7 @@
 
 #More
 -login, 회원가입, 프로필 수정
+-각 Portfolio 문서들을 model 로 만듬
 
 
 wow!
