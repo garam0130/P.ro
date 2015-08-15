@@ -967,3 +967,15 @@ body {
         font-size: 15px;
       }
     }
+
+#header > .content .jumbotron {
+    margin: 100px 0;
+}
+
+.jumbotron {
+    background-color: transparent;
+}
+
+.jumbotron> h1{
+    margin:100px;
+}
