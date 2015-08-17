@@ -5,5 +5,3 @@ class Contact(models.Model):
     sender = models.EmailField(blank=True, null=True)
     phone = models. CharField(max_length=100)
     message = models.TextField()
-
-

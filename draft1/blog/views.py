@@ -41,18 +41,18 @@ def index(request):
     return render(request, 'blog/index.html', params)
 
 
-def login_user(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('blog:index')
+# def login_user(request):
+#     if request.method == "POST":
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(username=username, password=password)
+#         if user is not None:
+#             if user.is_active:
+#                 login(request, user)
+#                 return redirect('blog:index')
 
-    else:
-        return render(request, 'registration/login.html')
+#     else:
+#         return render(request, 'registration/login.html')
 
 
 
