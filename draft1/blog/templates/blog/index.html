@@ -17,7 +17,7 @@
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{% static "css/agency.css" %}" rel="stylesheet">
+    <link href="{% static "css/p_ro.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static "font-awesome/css/font-awesome.min.css" %}"= rel="stylesheet" type="text/css">
@@ -25,6 +25,7 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,52 +103,39 @@
 
 <header>
 
-    <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="item active">
-        <img src="{%static "img/study.jpg"%}" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>공부합니다.</h1>
-              <p class="lead">마음맞는 사람들과 프로그래밍 공부중...</p>
-              <a class="btn btn-large btn-primary" href="#">아무것도 몰라도 괜찮습니다.</a>
+    <div id="header">
+    <div class="content">
+        <div class="container">
+            <div class="jumbotron">
+                <h1 >피로그래밍</h1>
+                <div class="space-sm"></div>
+                <p>
+
+                </p>
+                <div class="space-sm"></div>
+                <p>
+
+                        <span class="btn btn-primary">Apply</span>
+
+
+
+
+                </p>
+                <div style="height: 60px; overflow: hidden;">
+
+
+                </div>
             </div>
-          </div>
         </div>
-        <div class="item">
-          <img src="{%static "img/drink.jpg"%}" alt="">
-          <div class="container">
-            <div class="carousel-caption text-centered">
-              <h1>마십니다.</h1>
-              <p class="lead">매 일 매 일</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{%static "img/stripes.jpg"%}" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>만듭니다.</h1>
-              <p class="lead">꿈에 그리던 인연을 만듭니다.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-            </div>
-          </div>
-        </div>
-      </div>
- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-    </div><!-- /.carousel -->
+    </div>
+</div>
 
 
-
-
+    <script src="{% static "js/jquery.js"%}"></script>
+    <script src="{% static "js/jquery.backstretch.min.js"%}"></script>
+    <script>
+     $("#header").backstretch(["{%static "img/study.jpg"%}","{%static "img/with_teacher.jpg"%}","{%static "img/shy.jpg"%}"],{ duration: 3000, fade: 750 })
+    </script>
 
 
 </header>
@@ -410,7 +398,7 @@
                 <div class="col-sm-4">
                     <div class="team-member">
                         <img src="{% static "img/team/2.jpg"%}" class="img-responsive img-circle" alt="">
-                        <h4>박근우</h4>
+                        <h4>미남 박근우 </h4>
                         <p class="text-muted">개발자</p>
                         <ul class="list-inline social-buttons">
                             <li><a href="#"><i class="fa fa-twitter"></i></a>
@@ -425,7 +413,7 @@
                 <div class="col-sm-4">
                     <div class="team-member">
                         <img src="{% static "img/team/3.jpg"%}" class="img-responsive img-circle" alt="">
-                        <h4>이가람</h4>
+                        <h4>단아한 이가람</h4>
                         <p class="text-muted">개발자</p>
                         <ul class="list-inline social-buttons">
                             <li><a href="#"><i class="fa fa-twitter"></i></a>
@@ -580,7 +568,7 @@
     <script src="{% static "js/contact_me.js"%}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{% static "js/agency.js"%}"></script>
+    <script src="{% static "js/p_ro.js"%}"></script>
 
 </body>
 
