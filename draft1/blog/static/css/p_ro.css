@@ -927,7 +927,7 @@ body {
 
     @media (max-width: 979px) {
 
-      .carousel .item {
+      #header {
         height: 500px;
       }
       .carousel img {
@@ -977,5 +977,6 @@ body {
 }
 
 .jumbotron> h1{
-    margin:100px;
+    margin:50px;
+    padding-top:100px;
 }
