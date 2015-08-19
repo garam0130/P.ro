@@ -41,9 +41,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-draft1/blog/migrations/__pycache__/0001_initial.cpython-34.pyc
+draft1/blog/migrations/
 *.pyc
 *.sqlite3
-draft1/accounts/migrations/__init__.py
+draft1/accounts/migrations/
 *.pyc
 *.pyc

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from blog.forms import ContactForm
+from blog.forms import ContactForm, ApplyForm
+from blog.models import Apply
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 
 
@@ -41,21 +41,31 @@ def index(request):
     return render(request, 'blog/index.html', params)
 
 
-# def login_user(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(username=username, password=password)
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 return redirect('blog:index')
+@login_required
+def apply(request):
+    user = request.user
+    apply_exist = Apply.objects.filter(user=user).exists()
+    if request.method == "POST":
 
-#     else:
-#         return render(request, 'registration/login.html')
+        if apply_exist:
+            apply = Apply.objects.get(user=user)
+            form = ApplyForm(request.POST, instance=apply)
+        else:
+            form = ApplyForm(request.POST)
 
+        if form.is_valid():
+            apply = form.save(commit=False)
+            apply.user = request.user
+            apply.save()
+            return redirect('blog:index')
 
+    else:
+        if apply_exist:
+            apply = Apply.objects.get(user=user)
+            form = ApplyForm(instance=apply)
+        else:
+            form = ApplyForm()
 
-
-
-
+    return render(request, 'blog/apply.html', {
+        'form': form,
+    })
