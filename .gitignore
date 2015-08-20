@@ -42,8 +42,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 draft1/blog/migrations/
-*.pyc
-*.sqlite3
 draft1/accounts/migrations/
 *.pyc
-*.pyc
+*.sqlite3
