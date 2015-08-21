@@ -1,9 +1,9 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Bootstrap Core CSS -->
     <!--<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">-->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-
+    <link rel= "stylesheet" href="{%static "css/styles.css" %}"/>
     <!-- Custom CSS -->
     <link href="{% static "css/p_ro.css" %}" rel="stylesheet">
 
@@ -36,7 +36,9 @@
 
 </head>
 
+
 <body id="page-top" class="index">
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -49,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">P.rograming</a>
+                <a class="navbar-brand page-scroll" href="#page-top">[<span style='color:red;'>P</span>.ro]</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -75,8 +77,10 @@
                     </li>
                     {% if not user.is_authenticated %}
                         <li>
-                            <a href={% url "login" %}>Login</a>
+                            <a href="{%url "login"%}" >Login</a>
                         </li>
+                        <li>
+                            <a href = {%url "accounts:signup" %}>SignUp</a>
                     {% else %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -92,8 +96,6 @@
                         </li>
                     {% endif %}
 
-
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -102,6 +104,7 @@
     </nav>
 
 <header>
+
 
     <div id="header">
     <div class="content">
@@ -139,7 +142,33 @@
 
 
 </header>
+<script src="{% static "js/jquery.toaster.js" %}"></script>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {% if messages %}
+                {% for message in messages %}
+                <!--
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </div>
+                -->
+                <script>
+
+
+                    $.toaster({
+                        title: null,
+                        priority: '{{ message.tags }}',
+                        message: '{{ message }}'
+
+                    });
+                </script>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 
     <!-- Services Section -->
     <section id="services">
@@ -154,7 +183,7 @@
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+                        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse bouncecircle"></i>
                     </span>
                     <h4 class="service-heading">비전공자 대상</h4>
                     <p class="text-muted">비전공자를 위한 코딩 연합 동아리! 기초가없어도 됩니다. "더 제대로 가르쳐 줄께!!!"</p>
@@ -162,7 +191,7 @@
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                        <i class="fa fa-laptop fa-stack-1x fa-inverse bouncecircle"></i>
                     </span>
                     <h4 class="service-heading">웹/앱서비스 개발</h4>
                     <p class="text-muted">현업 개발자 선생님과 함께 Python과 Web Framework인 Django를 공부합니다. "내손으로 웹 서비스를 만들어 보고 싶은 사람들의 빛나는 도전!!"</p>
@@ -170,7 +199,7 @@
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-university fa-stack-1x fa-inverse"></i>
+                        <i class="fa fa-university fa-stack-1x fa-inverse bouncecircle"></i>
                     </span>
                     <h4 class="service-heading">Micro-College, 한 여름밤의 열기</h4>
                     <p class="text-muted">동기들과 함께 단기간에 빠르게 배울수 있습니다."상상이상의 열정으로 상상이상의 결과물을 만들어 낸다!!!"</p>
@@ -523,6 +552,7 @@
     </section>
 
     <footer>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -551,6 +581,9 @@
     </footer>
 
     {% include "blog/portfolio.html" %}
+
+
+
 
     <!-- jQuery -->
     <script src="{% static "js/jquery.js"%}"></script>

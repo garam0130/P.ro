@@ -9,14 +9,14 @@ from django.http.response import HttpResponseRedirect
 
 def index(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
 
-            name = form.cleaned_data['name']
-            sender = form.cleaned_data['sender']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
+            name = contact_form.cleaned_data['name']
+            sender = contact_form.cleaned_data['sender']
+            phone = contact_form.cleaned_data['phone']
+            message = contact_form.cleaned_data['message']
             from_email = settings.EMAIL_HOST_USER
             to_email = [from_email, ]
 
@@ -33,26 +33,15 @@ def index(request):
             return HttpResponseRedirect('/contact/')
 
     else:
-        form = ContactForm()
+        contact_form = ContactForm()
         params = {
-            'form': form,
+            'contact_form': contact_form,
         }
 
     return render(request, 'blog/index.html', params)
 
 
-# def login_user(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(username=username, password=password)
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 return redirect('blog:index')
 
-#     else:
-#         return render(request, 'registration/login.html')
 
 
 

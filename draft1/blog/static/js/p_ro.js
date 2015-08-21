@@ -26,6 +26,6 @@ $('.navbar-collapse ul li a').click(function() {
 });
 
 
-$('i').hover(function() {
+$('.bouncecircle').hover(function() {
     $(this).effect( "bounce","slow" );
 });
