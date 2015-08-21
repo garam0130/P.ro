@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load thumbnail %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +15,10 @@
     <title>P.rogramming</title>
 
     <!-- Bootstrap Core CSS -->
-    <!--<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">-->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{% static "css/p_ro.css" %}" rel="stylesheet">
+    <link href="{% static "css/agency.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static "font-awesome/css/font-awesome.min.css" %}"= rel="stylesheet" type="text/css">
@@ -25,7 +26,6 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">P.rograming</a>
+                <a class="navbar-brand page-scroll" href="#page-top">P.rograming (창현 commit 확인)</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -73,27 +73,6 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
-                    {% if not user.is_authenticated %}
-                        <li>
-                            <a href={% url "blog:login" %}>Login</a>
-                        </li>
-                    {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {{ user }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    {% endif %}
-
-
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -103,39 +82,52 @@
 
 <header>
 
-    <div id="header">
-    <div class="content">
-        <div class="container">
-            <div class="jumbotron">
-                <h1 >피로그래밍</h1>
-                <div class="space-sm"></div>
-                <p>
-
-                </p>
-                <div class="space-sm"></div>
-                <p>
-
-                        <span class="btn btn-primary">Apply</span>
-
-
-
-
-                </p>
-                <div style="height: 60px; overflow: hidden;">
-
-
-                </div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="{%static "img/study.jpg"%}" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>공부합니다.</h1>
+              <p class="lead">마음맞는 사람들과 프로그래밍 공부중...</p>
+              <a class="btn btn-large btn-primary" href="#">아무것도 몰라도 괜찮습니다.</a>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+        <div class="item">
+          <img src="{%static "img/drink.jpg"%}" alt="">
+          <div class="container">
+            <div class="carousel-caption text-centered">
+              <h1>마십니다.</h1>
+              <p class="lead">매 일 매 일</p>
+              <a class="btn btn-large btn-primary" href="#">Learn more</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="{%static "img/stripes.jpg"%}" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>만듭니다.</h1>
+              <p class="lead">꿈에 그리던 인연을 만듭니다.</p>
+              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+            </div>
+          </div>
+        </div>
+      </div>
+ <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+    </div><!-- /.carousel -->
 
 
-    <script src="{% static "js/jquery.js"%}"></script>
-    <script src="{% static "js/jquery.backstretch.min.js"%}"></script>
-    <script>
-     $("#header").backstretch(["{%static "img/study.jpg"%}","{%static "img/with_teacher.jpg"%}","{%static "img/shy.jpg"%}"],{ duration: 3000, fade: 750 })
-    </script>
+
+
 
 
 </header>
@@ -147,7 +139,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">P.rogramming</h3>
+                    <h3 class="section-subheading text-muted">[ P.rogramming ]</h3>
                 </div>
             </div>
             <div class="row text-center">
@@ -165,7 +157,7 @@
                         <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">웹/앱서비스 개발</h4>
-                    <p class="text-muted">현업 개발자 선생님과 함께 Python과 Web Framework인 Django를 공부합니다. "내손으로 웹 서비스를 만들어 보고 싶은 사람들의 빛나는 도전!!"</p>
+                    <p class="text-muted">현업 개발자 선생님과 함께 Python과 Web Framework인 Django를 공부합니다.</p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
@@ -173,7 +165,7 @@
                         <i class="fa fa-university fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Micro-College, 한 여름밤의 열기</h4>
-                    <p class="text-muted">동기들과 함께 단기간에 빠르게 배울수 있습니다."상상이상의 열정으로 상상이상의 결과물을 만들어 낸다!!!"</p>
+                    <p class="text-muted">동기들과 함께 단기간에 빠르게 배울수 있습니다."상상이상의 열정으로 상상이상의 결과물을 만들어 낸다!!"</p>
                 </div>
             </div>
         </div>
@@ -185,7 +177,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Project made by P.rogramming</h3>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
             </div>
             <div class="row">
@@ -378,69 +370,18 @@
                     <h2 class="section-heading">Our Amazing Team</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
+                {% for post in post_list %}
+                    <div ng-repeat="u in users" class="col-xs-4 col-sm-2">
+                        <div class="team-thumb">
+                        <a href="#myModal_{{ post.pk}}" ng-click="showUserModal($index)" data-toggle="modal"><img src="{{ post.photo.url }}" class="img-thumbnail img-responsive img-circle"></a>
+                        <h3 class="text-center"></h3>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="{% static "img/team/1.jpg"%}" class="img-responsive img-circle" alt="">
-                        <h4>김빛나</h4>
-                        <p class="text-muted">개발자</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="{% static "img/team/2.jpg"%}" class="img-responsive img-circle" alt="">
-                        <h4>미남 박근우 </h4>
-                        <p class="text-muted">개발자</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="{% static "img/team/3.jpg"%}" class="img-responsive img-circle" alt="">
-                        <h4>단아한 이가람</h4>
-                        <p class="text-muted">개발자</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="{% static "img/team/4.jpg"%}" class="img-responsive img-circle" alt="">
-                        <h4>이창현</h4>
-                        <p class="text-muted">개발자</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        </div>
+
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
@@ -455,22 +396,22 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <a href="#">
-                        <img src="{% static "img/logos/logo1.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "img/logos/envato.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <a href="#">
-                        <img src="{% static "img/logos/logo2.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "img/logos/designmodo.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <a href="#">
-                        <img src="{% static "img/logos/logo3.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "img/logos/themeforest.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <a href="#">
-                        <img src="{% static "img/logos/logo4.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "img/logos/creative-market.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
             </div>
@@ -554,7 +495,7 @@
     <!-- Use the modals below to showcase details about your portfolio projects! -->
 
     <!-- Portfolio Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -587,7 +528,7 @@
     </div>
 
     <!-- Portfolio Modal 2 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -613,7 +554,7 @@
     </div>
 
     <!-- Portfolio Modal 3 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -640,7 +581,7 @@
     </div>
 
     <!-- Portfolio Modal 4 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -667,7 +608,7 @@
     </div>
 
     <!-- Portfolio Modal 5 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -694,7 +635,7 @@
     </div>
 
     <!-- Portfolio Modal 6 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -720,6 +661,39 @@
         </div>
     </div>
 
+
+<!--teamModal -->
+{% for post in post_list %}
+<div id="myModal_{{ post.pk }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 id="myModalLabel" class="text-center">{{post.name}}</h1>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-4 col-xs-offset-4"><div class="team-thumb"><img src="{{post.photo.url}}" class="img-thumbnail img-responsive img-circle"></div></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h4 class="text-center">{{post.content}}</h4>
+                        <h4 class="text-center"><a href="{{post.URL1}}"><button class="btn btn-info"><i class="fa fa-facebook"></i></button></a><a href="{{post.URL2}}"><button class="btn btn-default"><i class="fa fa-github"></i></button></a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-info">
+                <button class="btn btn-lg btn-default center-block" data-dismiss="modal" aria-hidden="true">Okay!</button>
+            </div>
+        </div>
+    </div>
+</div><!--/modal-->
+
+{% endfor %}
+
+
+
     <!-- jQuery -->
     <script src="{% static "js/jquery.js"%}"></script>
 
@@ -736,7 +710,7 @@
     <script src="{% static "js/contact_me.js"%}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{% static "js/p_ro.js"%}"></script>
+    <script src="{% static "js/agency.js"%}"></script>
 
 </body>
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from blog.forms import ContactForm
 from django.conf import settings
+from blog.models import Post
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -34,8 +35,9 @@ def index(request):
 
     else:
         form = ContactForm()
+        post_list = Post.objects.all()
         params = {
-            'form': form,
+            'form': form, 'post_list': post_list,
         }
 
     return render(request, 'blog/index.html', params)
@@ -55,7 +57,8 @@ def login_user(request):
         return render(request, 'registration/login.html')
 
 
-
-
-
-
+# def detail(request, pk):
+#     post_list = Post.objects.all()
+#     return render(request, 'blog/index.html', {
+#         'post_list': post_list,
+#     })
