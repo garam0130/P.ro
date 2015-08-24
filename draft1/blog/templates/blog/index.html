@@ -15,11 +15,12 @@
     <title>P.rogramming</title>
 
     <!-- Bootstrap Core CSS -->
-    <!--<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">-->
+
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <link rel= "stylesheet" href="{%static "css/styles.css" %}"/>
+
     <!-- Custom CSS -->
-    <link href="{% static "css/agency.css" %}" rel="stylesheet">
+    <link href="{% static "css/p_ro.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static "font-awesome/css/font-awesome.min.css" %}"= rel="stylesheet" type="text/css">
@@ -54,7 +55,6 @@
                 </button>
 
                 <a class="navbar-brand page-scroll" href="#page-top">[<span style='color:red;'>P</span>.ro]</a>
-
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,6 +78,7 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+
                     {% if not user.is_authenticated %}
                         <li>
                             <a href="{%url "login"%}" >Login</a>
@@ -108,6 +109,7 @@
 
 <header>
 
+
     <div id="header">
     <div class="content">
         <div class="container">
@@ -120,7 +122,7 @@
                 <div class="space-sm"></div>
                 <p>
 
-                        <a href={% url 'blog:apply' %}><span class="btn btn-primary">Apply</span></a>
+                        <a href="{% url 'blog:apply' %}"><span class="btn btn-primary">Apply</span></a>
 
 
 
@@ -133,39 +135,12 @@
             </div>
           </div>
         </div>
-        <div class="item">
-          <img src="{%static "img/drink.jpg"%}" alt="">
-          <div class="container">
-            <div class="carousel-caption text-centered">
-              <h1>마십니다.</h1>
-              <p class="lead">매 일 매 일</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{%static "img/stripes.jpg"%}" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>만듭니다.</h1>
-              <p class="lead">꿈에 그리던 인연을 만듭니다.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-            </div>
-          </div>
-        </div>
       </div>
- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-    </div><!-- /.carousel -->
-
-
-
-
-
+        <script src="{% static "js/jquery.js"%}"></script>
+        <script src="{% static "js/jquery.backstretch.min.js"%}"></script>
+        <script>
+         $("#header").backstretch(["{%static "img/study.jpg"%}","{%static "img/with_teacher.jpg"%}","{%static "img/shy.jpg"%}"],{ duration: 3000, fade: 750 })
+        </script>
 
 </header>
 <script src="{% static "js/jquery.toaster.js" %}"></script>
@@ -202,7 +177,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">[ P.rogramming ]</h3>
+                    <h3 class="section-subheading text-muted"> P.rogramming </h3>
                 </div>
             </div>
             <div class="row text-center">
@@ -228,7 +203,8 @@
                         <i class="fa fa-university fa-stack-1x fa-inverse bouncecircle"></i>
                     </span>
                     <h4 class="service-heading">Micro-College, 한 여름밤의 열기</h4>
-                    <p class="text-muted">동기들과 함께 단기간에 빠르게 배울수 있습니다."상상이상의 열정으로 상상이상의 결과물을 만들어 낸다!!"</p>
+                    <p class="text-muted">동기들과 함께 단기간에 빠르게 배울수 있습니다.</br>"상상이상의 열정으로 상상이상의 결과물을 만들어 낸다!!!"</p>
+
                 </div>
             </div>
         </div>
@@ -254,8 +230,8 @@
                         <img src="{%static "img/portfolio/1.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Round Icons</h4>
-                        <p class="text-muted">Graphic Design</p>
+                        <h4>2015. 07. 16</h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -268,8 +244,8 @@
                         <img src="{% static "img/portfolio/2.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Startup Framework</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>2015. 07. 30</h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -282,8 +258,8 @@
                         <img src="{% static "img/portfolio/3.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Treehouse</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>2015. 07. 28</h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -296,8 +272,8 @@
                         <img src="{% static "img/portfolio/4.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Golden</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>2015. 08. 06</h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -310,8 +286,8 @@
                         <img src="{% static "img/portfolio/5.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Escape</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>2015. 08. 11</h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -324,8 +300,8 @@
                         <img src="{% static "img/portfolio/6.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Dreams</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>2015. 08. 05 </h4>
+                        <p class="text-muted"></p>
                     </div>
                 </div>
             </div>
@@ -552,6 +528,9 @@
 
     {% include "blog/portfolio.html" %}
 
+
+
+
 <!--teamModal -->
 {% for post in post_list %}
 <div id="myModal_{{ post.pk }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -601,7 +580,7 @@
 
 
     <!-- Custom Theme JavaScript -->
-    <script src="{% static "js/agency.js"%}"></script>
+    <script src="{% static "js/p_ro.js"%}"></script>
 
 </body>
 

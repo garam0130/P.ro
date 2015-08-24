@@ -38,10 +38,10 @@ def index(request):
             return HttpResponseRedirect('/contact/')
 
     else:
-        form = ContactForm()
+        contact_form = ContactForm()
         post_list = Post.objects.all()
         params = {
-            'form': form, 'post_list': post_list, 'contact_form': contact_form,
+            'contact_form': contact_form, 'post_list': post_list, 'contact_form': contact_form,
         }
 
     return render(request, 'blog/index.html', params)
