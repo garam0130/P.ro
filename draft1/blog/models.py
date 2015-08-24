@@ -4,7 +4,7 @@ from django.conf import settings
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)
-    sender = models.EmailField(blank=True, null=True)
+    sender = models.EmailField()
     phone = models.CharField(max_length=100)
     message = models.TextField()
 

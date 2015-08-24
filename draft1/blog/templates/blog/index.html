@@ -1,5 +1,7 @@
 {% load staticfiles %}
-
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,7 +120,7 @@
                 <div class="space-sm"></div>
                 <p>
 
-                        <a href={% url 'blog:apply' %}><span class="btn btn-primary">Apply</span></a>
+                        <span class="btn btn-primary">Apply</span>
 
 
 
@@ -521,21 +523,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input name="name" type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    {% bootstrap_field form.name %}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input name="sender" type="email" class="form-control" placeholder="Your Email *" id="sender" required data-validation-required-message="Please enter your email address.">
+                                    {% bootstrap_field form.sender %}
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input name="phone" type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    {% bootstrap_field form.phone %}
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea name="message" class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    {% bootstrap_field form.message %}
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

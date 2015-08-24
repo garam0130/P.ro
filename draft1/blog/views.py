@@ -9,17 +9,15 @@ from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
-        contact_form = ContactForm(request.POST)
-        params = {
-            'contact_form': contact_form,
-        }
-        if contact_form.is_valid():
-            contact_form.save()
+        form = ContactForm(request.POST)
 
-            name = contact_form.cleaned_data['name']
-            sender = contact_form.cleaned_data['sender']
-            phone = contact_form.cleaned_data['phone']
-            message = contact_form.cleaned_data['message']
+        if form.is_valid():
+            form.save()
+
+            name = form.cleaned_data['name']
+            sender = form.cleaned_data['sender']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
             from_email = settings.EMAIL_HOST_USER
             to_email = [from_email, ]
 
@@ -32,17 +30,17 @@ def index(request):
                 from_email,
                 to_email,
                 fail_silently=False)
-            messages.success(request,'A mail has been sent to us.')
+            messages.success(request,'이메일이 보내졌습니다.')
 
             return HttpResponseRedirect('/contact/')
+        else:
+            messages.warning(request,'양식에 맞춰 다시 제출해주세요.')
 
     else:
-        contact_form = ContactForm()
-        params = {
-            'contact_form': contact_form,
-        }
+        form = ContactForm()
 
-    return render(request, 'blog/index.html', params)
+
+    return render(request, 'blog/index.html', {"form":form})
 
 
 
