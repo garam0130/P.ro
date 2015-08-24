@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from blog.models import Contact, Post
+from blog.models import Contact, Post, Apply
 
 
 class ContactForm(ModelForm):
@@ -12,3 +12,9 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ['name', 'content', 'photo']
+
+class ApplyForm(ModelForm):
+    class Meta:
+        model = Apply
+        fields = ('name', 'content')
+

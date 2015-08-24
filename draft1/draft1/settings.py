@@ -27,11 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'garam0130@gmail.com'
-EMAIL_HOST_PASSWORD = 'jggs9901'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -44,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'sorl.thumbnail',
+    'accounts',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,8 +106,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'project', 'static'),
+    os.path.join(BASE_DIR, 'accounts', 'static'),
 ]
 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('blog:index')
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'p.rogramming3k@gmail.com'
+EMAIL_HOST_PASSWORD = 'fzhrnlbdyxkbasfb'

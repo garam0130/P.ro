@@ -1,28 +1,31 @@
 from django.shortcuts import render, redirect
-from blog.forms import ContactForm
+from blog.forms import ContactForm, ApplyForm
+from blog.models import Apply, Post
 from django.conf import settings
-from blog.models import Post
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
-
+from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
+        contact_form = ContactForm(request.POST)
+        params = {
+            'contact_form': contact_form,
+        }
+        if contact_form.is_valid():
+            contact_form.save()
 
-            name = form.cleaned_data['name']
-            sender = form.cleaned_data['sender']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
+            name = contact_form.cleaned_data['name']
+            sender = contact_form.cleaned_data['sender']
+            phone = contact_form.cleaned_data['phone']
+            message = contact_form.cleaned_data['message']
             from_email = settings.EMAIL_HOST_USER
             to_email = [from_email, ]
 
-            contact_subject = "Message from %s is arrived" % name
-            contact_message = "message: %s \nsender: %s \nEmail: %s \nphone: %s" %(message, name, sender, phone)
+            contact_subject = "[%s] 에게서 메일이 왔습니다" % name
+            contact_message = "[보낸이:%s] \n[이메일:%s] \n[연락처:%s] \n[내용:%s]" %(message, name, sender, phone)
 
             send_mail(
                 contact_subject,
@@ -30,6 +33,7 @@ def index(request):
                 from_email,
                 to_email,
                 fail_silently=False)
+            messages.success(request,'A mail has been sent to us.')
 
             return HttpResponseRedirect('/contact/')
 
@@ -37,28 +41,38 @@ def index(request):
         form = ContactForm()
         post_list = Post.objects.all()
         params = {
-            'form': form, 'post_list': post_list,
+            'form': form, 'post_list': post_list, 'contact_form': contact_form,
         }
 
     return render(request, 'blog/index.html', params)
 
 
-def login_user(request):
+@login_required
+def apply(request):
+    user = request.user
+    apply_exist = Apply.objects.filter(user=user).exists()
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('blog:index')
+
+
+        if apply_exist:
+            apply = Apply.objects.get(user=user)
+            form = ApplyForm(request.POST, instance=apply)
+        else:
+            form = ApplyForm(request.POST)
+
+        if form.is_valid():
+            apply = form.save(commit=False)
+            apply.user = request.user
+            apply.save()
+            return redirect('blog:index')
 
     else:
-        return render(request, 'registration/login.html')
+        if apply_exist:
+            apply = Apply.objects.get(user=user)
+            form = ApplyForm(instance=apply)
+        else:
+            form = ApplyForm()
 
-
-# def detail(request, pk):
-#     post_list = Post.objects.all()
-#     return render(request, 'blog/index.html', {
-#         'post_list': post_list,
-#     })
+    return render(request, 'blog/apply.html', {
+        'form': form,
+    })

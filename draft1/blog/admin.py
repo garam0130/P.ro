@@ -1,6 +1,6 @@
 from django.contrib import admin
-from blog.models import Contact, Post
+from blog.models import Contact, Post, Apply
 
 admin.site.register(Contact)
 admin.site.register(Post)
-# Register your models here.
+admin.site.register(Apply)

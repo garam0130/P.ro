@@ -19,6 +19,8 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('accounts.urls', namespace = 'accounts')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^contact/', include('blog.urls', namespace='blog')),
 ]
 
