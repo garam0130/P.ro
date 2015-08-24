@@ -1,8 +1,21 @@
+<h1 style="text-align: center;">P.rogramming 지원서</h1>
 
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit"/>
-</form>
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<style>
+#apply_form{
+    padding-bottom: 5%;
+}
+</style>
+
+<div class="col-xs-12 col-md-4 col-md-offset-4" id="apply_form">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="임시저장" name="_save"/>
+        <input type="submit" value="최종제출" name="_submit"/>
+    </form>
+</div>

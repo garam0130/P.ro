@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from blog.forms import ContactForm, ApplyForm
 from blog.models import Apply
 from django.conf import settings
@@ -45,6 +45,7 @@ def index(request):
 def apply(request):
     user = request.user
     apply_exist = Apply.objects.filter(user=user).exists()
+
     if request.method == "POST":
 
         if apply_exist:
@@ -56,16 +57,36 @@ def apply(request):
         if form.is_valid():
             apply = form.save(commit=False)
             apply.user = request.user
-            apply.save()
-            return redirect('blog:index')
+            if '_save' in request.POST:
+                apply.save()
+                return redirect('blog:index')
+            if '_submit' in request.POST:
+                apply.save()
+                return redirect('blog:thanks')
 
     else:
         if apply_exist:
             apply = Apply.objects.get(user=user)
-            form = ApplyForm(instance=apply)
+            if apply.final_submit:
+                # form = ApplyForm(instance=apply)
+                return redirect('blog:thanks')
+            else:
+                form = ApplyForm(instance=apply)
         else:
             form = ApplyForm()
 
     return render(request, 'blog/apply.html', {
         'form': form,
+    })
+
+
+@login_required
+def thanks(request):
+    user = request.user
+    apply = get_object_or_404(Apply, user=user)
+    just_now = not apply.final_submit
+    apply.final_submit = True
+    apply.save()
+    return render(request, 'blog/thanks.html', {
+        'just_now': just_now,
     })
