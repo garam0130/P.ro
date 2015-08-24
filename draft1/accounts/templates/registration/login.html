@@ -1,4 +1,4 @@
-
+{% extends "registration/layout.html" %}
 {% load staticfiles %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
@@ -7,12 +7,12 @@
 <link rel= "stylesheet" href="{%static "css/styles.css" %}"/>
 
 
-
+{% block content%}
 {% if not user.is_authenticated %}
 <div class = "container">
     <div class="wrapper">
       <div class="col-xs-12 col-md-4 col-md-offset-4">
-        <form action="{%url "login"%}" method="post" name="Login_Form" class="form-signin">
+        <form action="{%url "login"%}" method="post" name="Login_Form" class="form-signin" style="margin-top: 100px" >
         {% csrf_token %}
             <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
               <hr class="colorgraph">
@@ -32,9 +32,9 @@
 {% else %}
 <div class = "container">
     <div class="wrapper">
-      <div class="col-xs-12 col-md-4 col-md-offset-4">
+      <div class="col-xs-12 col-md-4 col-md-offset-4" style="margin-top: 200px">
 
-        <h3> You're already logged in.
+        <h3> Already logged in.</h3>
 
       </div>
     </div>
@@ -42,5 +42,5 @@
 
 
 {% endif %}
-
+{% endblock%}
 

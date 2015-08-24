@@ -6,7 +6,7 @@ from django.core import validators
 
 
 class QuizAuthenticationForm(AuthenticationForm):
-    question = forms.CharField(label = '주인장 이름은?')
+    question = forms.CharField(label = '다음 피로그래밍 기수는 ( )기?')
     # email = forms.EmailField()
 
 
@@ -18,8 +18,8 @@ class QuizAuthenticationForm(AuthenticationForm):
 
     def clean_question(self):
         answer = self.cleaned_data.get('question','')
-        if answer != '박근우':
-            raise forms.ValidationError('이름이 틀렸어요ㅠㅠ')
+        if answer != '4':
+            raise forms.ValidationError('틀렸어요ㅠㅠ')
 
 class UserSignUpForm(UserCreationForm):
     email = forms.EmailField()

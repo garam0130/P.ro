@@ -5,11 +5,14 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
-
+from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
+        params = {
+            'contact_form': contact_form,
+        }
         if contact_form.is_valid():
             contact_form.save()
 
@@ -20,8 +23,8 @@ def index(request):
             from_email = settings.EMAIL_HOST_USER
             to_email = [from_email, ]
 
-            contact_subject = "Message from %s is arrived" % name
-            contact_message = "message: %s \nsender: %s \nEmail: %s \nphone: %s" %(message, name, sender, phone)
+            contact_subject = "[%s] 에게서 메일이 왔습니다" % name
+            contact_message = "[보낸이:%s] \n[이메일:%s] \n[연락처:%s] \n[내용:%s]" %(message, name, sender, phone)
 
             send_mail(
                 contact_subject,
@@ -29,6 +32,7 @@ def index(request):
                 from_email,
                 to_email,
                 fail_silently=False)
+            messages.success(request,'A mail has been sent to us.')
 
             return HttpResponseRedirect('/contact/')
 
