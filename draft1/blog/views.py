@@ -1,27 +1,31 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from blog.forms import ContactForm, ApplyForm
-from blog.models import Apply
+from blog.models import Apply, Post
 from django.conf import settings
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http.response import HttpResponseRedirect
-
+from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
+        contact_form = ContactForm(request.POST)
+        params = {
+            'contact_form': contact_form,
+        }
+        if contact_form.is_valid():
+            contact_form.save()
 
-            name = form.cleaned_data['name']
-            sender = form.cleaned_data['sender']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
+            name = contact_form.cleaned_data['name']
+            sender = contact_form.cleaned_data['sender']
+            phone = contact_form.cleaned_data['phone']
+            message = contact_form.cleaned_data['message']
             from_email = settings.EMAIL_HOST_USER
             to_email = [from_email, ]
 
-            contact_subject = "Message from %s is arrived" % name
-            contact_message = "message: %s \nsender: %s \nEmail: %s \nphone: %s" %(message, name, sender, phone)
+            contact_subject = "[%s] 에게서 메일이 왔습니다" % name
+            contact_message = "[보낸이:%s] \n[이메일:%s] \n[연락처:%s] \n[내용:%s]" %(message, name, sender, phone)
 
             send_mail(
                 contact_subject,
@@ -29,13 +33,15 @@ def index(request):
                 from_email,
                 to_email,
                 fail_silently=False)
+            messages.success(request,'A mail has been sent to us.')
 
             return HttpResponseRedirect('/contact/')
 
     else:
-        form = ContactForm()
+        contact_form = ContactForm()
+        post_list = Post.objects.all()
         params = {
-            'form': form,
+            'contact_form': contact_form, 'post_list': post_list, 'contact_form': contact_form,
         }
 
     return render(request, 'blog/index.html', params)
@@ -47,6 +53,7 @@ def apply(request):
     apply_exist = Apply.objects.filter(user=user).exists()
 
     if request.method == "POST":
+
 
         if apply_exist:
             apply = Apply.objects.get(user=user)
