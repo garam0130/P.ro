@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from blog.models import Contact, Apply
+from blog.models import Contact, Post, Apply
 
 
 class ContactForm(ModelForm):
@@ -8,7 +8,12 @@ class ContactForm(ModelForm):
         fields = ['name', 'sender', 'phone', 'message']
 
 
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['name', 'content', 'photo']
+
 class ApplyForm(ModelForm):
     class Meta:
         model = Apply
-        fields = ('name', 'content')
+        exclude = ('user', 'final_submit', )
