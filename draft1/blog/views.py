@@ -9,6 +9,12 @@ from django.http.response import HttpResponseRedirect
 from django.contrib import messages
 
 def index(request):
+    form = ContactForm()
+    post_list = Post.objects.all()
+    params = {
+            'form': form, 'post_list': post_list,
+    }
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
 
@@ -35,15 +41,8 @@ def index(request):
 
             return HttpResponseRedirect('/contact/')
         else:
-            messages.warning(request,'양식에 맞춰 다시 제출해주세요.')
-
-    else:
-        form = ContactForm()
-        post_list = Post.objects.all()
-        params = {
-            'form': form, 'post_list': post_list,
-        }
-
+            messages.warning(request,'올바른 이메일 주소를 입력해주세요.')
+            return HttpResponseRedirect('/contact/#contact')
 
     return render(request, 'blog/index.html', params)
 
