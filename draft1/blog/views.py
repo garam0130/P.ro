@@ -41,7 +41,7 @@ def index(request):
         contact_form = ContactForm()
         post_list = Post.objects.all()
         params = {
-            'contact_form': contact_form, 'post_list': post_list, 'contact_form': contact_form,
+            'contact_form': contact_form, 'post_list': post_list,
         }
 
     return render(request, 'blog/index.html', params)

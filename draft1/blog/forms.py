@@ -17,4 +17,3 @@ class ApplyForm(ModelForm):
     class Meta:
         model = Apply
         fields = ('name', 'content')
-
