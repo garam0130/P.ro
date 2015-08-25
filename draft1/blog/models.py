@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)
-    sender = models.EmailField()
+    sender = models.EmailField(default="")
     phone = models.CharField(max_length=100)
     message = models.TextField()
 
@@ -48,3 +48,5 @@ class Apply(models.Model):
 
     final_submit = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name

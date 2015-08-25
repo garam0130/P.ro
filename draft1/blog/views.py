@@ -67,9 +67,11 @@ def apply(request):
             apply.user = request.user
             if '_save' in request.POST:
                 apply.save()
+                messages.success(request,'지원서가 임시저장 되었습니다.')
                 return redirect('blog:index')
             if '_submit' in request.POST:
                 apply.save()
+                messages.success(request,'지원 감사합니다.')
                 return redirect('blog:thanks')
 
     else:
