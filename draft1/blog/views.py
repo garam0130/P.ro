@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from blog.forms import ContactForm, ApplyForm
 from blog.models import Apply, Post
 from django.conf import settings
@@ -10,17 +10,15 @@ from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
-        contact_form = ContactForm(request.POST)
-        params = {
-            'contact_form': contact_form,
-        }
-        if contact_form.is_valid():
-            contact_form.save()
+        form = ContactForm(request.POST)
 
-            name = contact_form.cleaned_data['name']
-            sender = contact_form.cleaned_data['sender']
-            phone = contact_form.cleaned_data['phone']
-            message = contact_form.cleaned_data['message']
+        if form.is_valid():
+            form.save()
+
+            name = form.cleaned_data['name']
+            sender = form.cleaned_data['sender']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
             from_email = settings.EMAIL_HOST_USER
             to_email = [from_email, ]
 
@@ -33,16 +31,19 @@ def index(request):
                 from_email,
                 to_email,
                 fail_silently=False)
-            messages.success(request,'A mail has been sent to us.')
+            messages.success(request,'이메일이 보내졌습니다.')
 
             return HttpResponseRedirect('/contact/')
+        else:
+            messages.warning(request,'양식에 맞춰 다시 제출해주세요.')
 
     else:
-        contact_form = ContactForm()
+        form = ContactForm()
         post_list = Post.objects.all()
         params = {
-            'contact_form': contact_form, 'post_list': post_list,
-        }
+            'form': form, 'post_list': post_list,
+}
+
 
     return render(request, 'blog/index.html', params)
 
@@ -51,6 +52,7 @@ def index(request):
 def apply(request):
     user = request.user
     apply_exist = Apply.objects.filter(user=user).exists()
+
     if request.method == "POST":
 
 
@@ -63,16 +65,38 @@ def apply(request):
         if form.is_valid():
             apply = form.save(commit=False)
             apply.user = request.user
-            apply.save()
-            return redirect('blog:index')
+            if '_save' in request.POST:
+                apply.save()
+                messages.success(request,'지원서가 임시저장 되었습니다.')
+                return redirect('blog:index')
+            if '_submit' in request.POST:
+                apply.save()
+                messages.success(request,'지원 감사합니다.')
+                return redirect('blog:thanks')
 
     else:
         if apply_exist:
             apply = Apply.objects.get(user=user)
-            form = ApplyForm(instance=apply)
+            if apply.final_submit:
+                # form = ApplyForm(instance=apply)
+                return redirect('blog:thanks')
+            else:
+                form = ApplyForm(instance=apply)
         else:
             form = ApplyForm()
 
     return render(request, 'blog/apply.html', {
         'form': form,
+    })
+
+
+@login_required
+def thanks(request):
+    user = request.user
+    apply = get_object_or_404(Apply, user=user)
+    just_now = not apply.final_submit
+    apply.final_submit = True
+    apply.save()
+    return render(request, 'blog/thanks.html', {
+        'just_now': just_now,
     })
