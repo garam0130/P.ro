@@ -1,178 +1,98 @@
-{% load staticfiles %}
-{% load bootstrap3 %}
-{% load thumbnail %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-
+{% load bootstrap3 staticfiles thumbnail %}<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="author" content="P.rogramming" />
+<meta name="description" content="official web site" />
+<title>P.rogramming</title>
 
-    <title>P.rogramming</title>
+<!-- Bootstrap Core CSS -->
+<link href="{% static "startbootstrap-agency/1.0.4/css/bootstrap.css" %}" rel="stylesheet" />
 
-    <!-- Bootstrap Core CSS -->
+<!-- Custom CSS -->
+<link href="{% static "startbootstrap-agency/1.0.4/css/agency.css" %}" rel="stylesheet" />
+<link href="{% static "blog/blog.css" %}" rel="stylesheet" />
 
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-    <link rel= "stylesheet" href="{%static "css/styles.css" %}"/>
+<!-- Custom Fonts -->
+<link href="{% static "startbootstrap-agency/1.0.4/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="{% static "css/p_ro.css" %}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{% static "font-awesome/css/font-awesome.min.css" %}"= rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="{% static "jquery-2.1.4.min.js"%}"></script>
 </head>
 
-
 <body id="page-top" class="index">
-
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="navbar-brand page-scroll" href="#page-top">[<span style='color:red;'>P</span>.ro]</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Activity</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">Timeline</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-
-                    {% if not user.is_authenticated %}
-                        <li>
-                            <a href="{%url "login"%}" >Login</a>
-                        </li>
-                        <li>
-                            <a href = {%url "accounts:signup" %}>SignUp</a>
-                    {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {{ user }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href={% url "logout" %}?next={{ request.path }}>
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    {% endif %}
-
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">[<span style="color:red;">P</span>.ro]</a>
         </div>
-        <!-- /.container-fluid -->
-    </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden"><a href="#page-top"></a></li>
+                <li><a class="page-scroll" href="#services">About</a></li>
+                <li><a class="page-scroll" href="#portfolio">Activity</a></li>
+                <li><a class="page-scroll" href="#about">Timeline</a></li>
+                <li><a class="page-scroll" href="#team">Team</a></li>
+                <li><a class="page-scroll" href="#contact">Contact</a></li>
+                {% if not user.is_authenticated %}
+                    <li><a href="{%url "login"%}" >Login</a></li>
+                    <li><a href = {%url "accounts:signup" %}>SignUp</a></li>
+                {% else %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {{ user }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url "logout" %}?next={{ request.path }}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
 
 <header>
-
-
     <div id="header">
-    <div class="content">
-        <div class="container">
-            <div class="jumbotron">
-                <h1 >피로그래밍</h1>
-                <div class="space-sm"></div>
-                <p>
-
-                </p>
-                <div class="space-sm"></div>
-                <p>
-
-
-                        <a href="{% url 'blog:apply' %}"><span class="btn btn-primary">Apply</span></a>
-
-
-
-
-
-                </p>
-                <div style="height: 60px; overflow: hidden;">
-
-
+        <div class="content">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1 >피로그래밍</h1>
+                    <div class="space-sm"></div>
+                    <p></p>
+                    <div class="space-sm"></div>
+                    <p>
+                        <a href="{% url "blog:apply" %}"><span class="btn btn-primary btn-xl">Apply</span></a>
+                    </p>
+                    <div style="height: 60px; overflow: hidden;">
+                    </div>
                 </div>
             </div>
-          </div>
-        </div>
-      </div>
-        <script src="{% static "js/jquery.js"%}"></script>
-        <script src="{% static "js/jquery.backstretch.min.js"%}"></script>
-        <script>
-         $("#header").backstretch(["{%static "img/study.jpg"%}","{%static "img/with_teacher.jpg"%}","{%static "img/shy.jpg"%}"],{ duration: 3000, fade: 750 })
-        </script>
-
-</header>
-<script src="{% static "js/jquery.toaster.js" %}"></script>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            {% if messages %}
-                {% for message in messages %}
-                <!--
-                    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
-                        {{ message }}
-                    </div>
-                -->
-                <script>
-
-
-                    $.toaster({
-                        title: null,
-                        priority: '{{ message.tags }}',
-                        message: '{{ message }}'
-
-                    });
-                </script>
-                {% endfor %}
-            {% endif %}
         </div>
     </div>
-</div>
+</header>
 
     <!-- Services Section -->
     <section id="services">
@@ -190,7 +110,7 @@
                         <i class="fa fa-graduation-cap fa-stack-1x fa-inverse bouncecircle"></i>
                     </span>
                     <h4 class="service-heading">비전공자 대상</h4>
-                    <p class="text-muted">비전공자를 위한 코딩 연합 동아리.</br> 기초가없어도 됩니다. "더 제대로 가르쳐 줄게!!!"</p>
+                    <p class="text-muted">비전공자를 위한 코딩 연합 동아리.</br> 기초가 없어도 됩니다. "더 제대로 가르쳐 줄게!!!"</p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
@@ -230,7 +150,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{%static "img/portfolio/1.jpg"%}" class="img-responsive" alt="">
+                        <img src="{%static "blog/img/portfolio/1.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>2015. 07. 16</h4>
@@ -244,7 +164,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{% static "img/portfolio/2.jpg"%}" class="img-responsive" alt="">
+                        <img src="{% static "blog/img/portfolio/2.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>2015. 07. 30</h4>
@@ -258,7 +178,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{% static "img/portfolio/3.jpg"%}" class="img-responsive" alt="">
+                        <img src="{% static "blog/img/portfolio/3.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>2015. 07. 28</h4>
@@ -272,7 +192,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{% static "img/portfolio/4.jpg"%}" class="img-responsive" alt="">
+                        <img src="{% static "blog/img/portfolio/4.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>2015. 08. 06</h4>
@@ -286,7 +206,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{% static "img/portfolio/5.jpg"%}" class="img-responsive" alt="">
+                        <img src="{% static "blog/img/portfolio/5.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>2015. 08. 11</h4>
@@ -300,7 +220,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{% static "img/portfolio/6.jpg"%}" class="img-responsive" alt="">
+                        <img src="{% static "blog/img/portfolio/6.jpg"%}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
                         <h4>2015. 08. 05 </h4>
@@ -325,7 +245,7 @@
                     <ul class="timeline">
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{% static "img/about/1.jpg" %}" alt="">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/1.jpg" %}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -339,7 +259,7 @@
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{% static "img/about/2.jpg" %}" alt="">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/2.jpg" %}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -353,7 +273,7 @@
                         </li>
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{% static "img/about/3.jpg" %}" alt="">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/3.jpg" %}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -367,7 +287,7 @@
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{% static "img/about/4.jpg" %}" alt="">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/4.jpg" %}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -381,12 +301,12 @@
                         </li>
                         <li>
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{% static "img/about/5.jpg" %}" alt="">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/5.jpg" %}" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4>JULY 2015</h4>
-                                    <h4 class="subheading">P.rogramming 3rd & M.T</h4>
+                                    <h4 class="subheading">P.rogramming 3rd &amp; M.T</h4>
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">Python + Django 웹 프레임워크.<br>여름방학이 시작하면서 3기를 모았다.<br>4개 대학에서 27명이 모였다.<br>이번엔 배우기 전에 살짝 놀고(마시고) 시작했다.</p>
@@ -395,7 +315,7 @@
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="{% static "img/about/6.jpg" %}" alt="">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/6.jpg" %}" alt="">
                             </div>
                         </li>
                     </ul>
@@ -423,11 +343,9 @@
             </div>
         </div>
 
-
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
             </div>
         </div>
     </section>
@@ -438,22 +356,22 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <a href="http://www.smba.go.kr/kr/index.do">
-                        <img src="{% static "img/logos/logo1.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "blog/img/logos/logo1.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <a href="http://ect.snu.ac.kr/">
-                        <img src="{% static "img/logos/logo2.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "blog/img/logos/logo2.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <a href="http://www.kised.or.kr/">
-                        <img src="{% static "img/logos/logo3.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "blog/img/logos/logo3.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <a href="http://www.google.com">
-                        <img src="{% static "img/logos/logo4.jpg"%}" class="img-responsive img-centered" alt="">
+                        <img src="{% static "blog/img/logos/logo4.jpg"%}" class="img-responsive img-centered" alt="">
                     </a>
                 </div>
             </div>
@@ -506,7 +424,6 @@
     </section>
 
     <footer>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -514,9 +431,7 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-
                         <li><a href="https://www.facebook.com/p.rogramming3k?fref=ts"><i class="fa fa-facebook"></i></a>
-
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -530,9 +445,6 @@
     </footer>
 
     {% include "blog/portfolio.html" %}
-
-
-
 
 <!--teamModal -->
 {% for post in post_list %}
@@ -551,7 +463,10 @@
                     <hr>
                     <div class="row">
                         <h4 class="text-center">{{post.content}}</h4>
-                        <h4 class="text-center"><a href="{{post.URL1}}"><button class="btn btn-info"><i class="fa fa-facebook"></i></button></a><a href="{{post.URL2}}"><button class="btn btn-default"><i class="fa fa-github"></i></button></a></h4>
+                        <h4 class="text-center">
+                            <a href="{{post.URL1}}"><button class="btn btn-info"><i class="fa fa-facebook"></i></button></a>
+                            <a href="{{post.URL2}}"><button class="btn btn-default"><i class="fa fa-github"></i></button></a>
+                        </h4>
                     </div>
                 </div>
             </div>
@@ -561,39 +476,44 @@
         </div>
     </div>
 </div><!--/modal-->
-
 {% endfor %}
 
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static "startbootstrap-agency/1.0.4/js/bootstrap.min.js"%}"></script>
 
+<!-- Plugin JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="{% static "startbootstrap-agency/1.0.4/js/classie.js"%}"></script>
+<script src="{% static "startbootstrap-agency/1.0.4/js/cbpAnimatedHeader.js"%}"></script>
 
-    <!-- jQuery -->
-    <script src="{% static "js/jquery.js"%}"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- Contact Form JavaScript -->
+<script src="{% static "startbootstrap-agency/1.0.4/js/jqBootstrapValidation.js"%}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js"%}"></script>
+<!-- Custom Theme JavaScript -->
+<script src="{% static "startbootstrap-agency/1.0.4/js/agency.js" %}"></script>
+<script src="{% static "blog/blog.js" %}"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="{% static "js/classie.js"%}"></script>
-    <script src="{% static "js/cbpAnimatedHeader.js"%}"></script>
+<script src="{% static "jquery.backstretch.min.js"%}"></script>
+<script src="{% static "jquery.toaster.js" %}"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="{% static "js/jqBootstrapValidation.js"%}"></script>
+<script>
+    $(function() {
+        $("#header").backstretch([
+            "{% static "blog/img/study.jpg" %}",
+            "{% static "blog/img/with_teacher.jpg" %}",
+            "{% static "blog/img/shy.jpg" %}"
+        ], { duration: 3000, fade: 750 });
 
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static "js/p_ro.js"%}"></script>
+        {% for message in messages %}
+            $.toaster({
+                title: null,
+                priority: "{{ message.tags }}",
+                message: "{{ message }}"
+            });
+        {% endfor %}
+    });
+</script>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
