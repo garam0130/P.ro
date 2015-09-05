@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from blog.forms import ContactForm, ApplyForm
-from blog.models import Apply, Post
+from blog.models import Apply, Post, Activity
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -11,8 +11,11 @@ from django.contrib import messages
 def index(request):
     form = ContactForm()
     post_list = Post.objects.all()
+    activity_list = Activity.objects.all()
     params = {
-            'form': form, 'post_list': post_list,
+            'form': form,
+            'post_list': post_list,
+            'activity_list': activity_list,
     }
 
     if request.method == 'POST':
