@@ -21,32 +21,6 @@ a.navbar-brand.page-scroll {
 }
 
 
-@media (max-width: 767px) {
-  .carousel {
-    margin-left: -20px;
-    margin-right: -20px;
-  }
-  .carousel .container {
-  }
-  .carousel .item {
-    height: 100%;
-  }
-  .carousel img {
-    height: 100%;
-  }
-  .carousel-caption {
-    width: 100%;
-    padding: 0 70px;
-    margin-top: 100px;
-  }
-  .carousel-caption h1 {
-    font-size: 20px;
-  }
-  .carousel-caption .lead,
-  .carousel-caption .btn {
-    font-size: 15px;
-  }
-}
 
 #header > .content .jumbotron {
     margin: 100px 0;
