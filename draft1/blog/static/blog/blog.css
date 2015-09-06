@@ -1,4 +1,12 @@
-.modal-footer {   border-top: 0px; }
+a.navbar-brand.page-scroll {
+  color: white;
+}
+
+.control-label {
+  color: white;
+}
+
+.modal-footer { border-top: 0px; }
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
