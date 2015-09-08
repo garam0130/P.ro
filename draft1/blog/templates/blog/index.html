@@ -1,79 +1,6 @@
-{% load bootstrap3 staticfiles thumbnail %}<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<meta name="author" content="P.rogramming" />
-<meta name="description" content="official web site" />
-<title>P.rogramming</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="{% static "startbootstrap-agency/1.0.4/css/bootstrap.css" %}" rel="stylesheet" />
-
-<!-- Custom CSS -->
-<link href="{% static "startbootstrap-agency/1.0.4/css/agency.css" %}" rel="stylesheet" />
-<link href="{% static "blog/blog.css" %}" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="{% static "startbootstrap-agency/1.0.4/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" />
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<script src="{% static "jquery-2.1.4.min.js"%}"></script>
-</head>
-
-<body id="page-top" class="index">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">[<span style="color:red;">P</span>.ro]</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden"><a href="#page-top"></a></li>
-                <li><a class="page-scroll" href="#services">About</a></li>
-                <li><a class="page-scroll" href="#portfolio">Activity</a></li>
-                <li><a class="page-scroll" href="#about">Timeline</a></li>
-                <li><a class="page-scroll" href="#team">Team</a></li>
-                <li><a class="page-scroll" href="#contact">Contact</a></li>
-                {% if not user.is_authenticated %}
-                    <li><a href="{%url "login"%}" >Login</a></li>
-                    <li><a href = {%url "accounts:signup" %}>SignUp</a></li>
-                {% else %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            {{ user }} <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{% url "logout" %}?next={{ request.path }}">Logout</a></li>
-                        </ul>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
+{% extends 'base.html' %}
+{% load bootstrap3 staticfiles thumbnail %}
+{% block content %}
 <header>
     <div id="header">
         <div class="content">
@@ -133,7 +60,7 @@
         </div>
     </section>
 
-    <!-- Portfolio Grid Section -->
+    <!-- Activity Section -->
     <section id="portfolio" class="bg-light-gray">
         <div class="container">
             <div class="row">
@@ -142,92 +69,24 @@
                     <h3 class="section-subheading text-muted">Pictures of P.rogramming</h3>
                 </div>
             </div>
+            {% for activity in activity_list %}
             <div class="row">
                 <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                    <a href="#activityModal_{{ activity.pk }}" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{%static "blog/img/portfolio/1.jpg"%}" class="img-responsive" alt="">
+                        <img src="{{ activity.photo.url }}" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>2015. 07. 16</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "blog/img/portfolio/2.jpg"%}" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>2015. 07. 30</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "blog/img/portfolio/3.jpg"%}" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>2015. 07. 28</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "blog/img/portfolio/4.jpg"%}" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>2015. 08. 06</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "blog/img/portfolio/5.jpg"%}" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>2015. 08. 11</h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "blog/img/portfolio/6.jpg"%}" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>2015. 08. 05 </h4>
+                        <h4>{{ activity.title }}</h4>
                         <p class="text-muted"></p>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 
@@ -438,7 +297,7 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
-                        <li>Developed by: 김빛나, 이가람, 박근우, 이창현</a>
+                        <li>Developed by: 김빛나, 박근우, 이가람, 이창현</a>
                         </li>
                     </ul>
                 </div>
@@ -446,7 +305,42 @@
         </div>
     </footer>
 
-    {% include "blog/portfolio.html" %}
+
+<!-- Modals -->
+<!-- Portfolio Modals -->
+    {% for activity in activity_list %}
+    <div class="portfolio-modal modal fade" id="activityModal_{{ activity.pk }}" >
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>{{ activity.title }}</h2>
+                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                            <img class="img-responsive img-centered" src="{{ activity.photo.url }}" alt="">
+                            <p>{{ activity.content }}</p>
+                            <p>
+                                <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
+                            <ul class="list-inline">
+                                <li>Date: July 2014</li>
+                                <li>Client: Round Icons</li>
+                                <li>Category: Graphic Design</li>
+                            </ul>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
 <!--teamModal -->
 {% for post in post_list %}
@@ -455,7 +349,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1 id="myModalLabel" class="text-center">{{post.name}}</h1>
+                <h1 id="myModalLabel" class="text-center">{{ post.name }}</h1>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -468,7 +362,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <h4 class="text-center">{{post.content}}</h4>
+                        <h4 class="text-center">{{ post.content }}</h4>
                         <h4 class="text-center">
                             <a href="{{post.URL1}}"><button class="btn btn-info"><i class="fa fa-facebook"></i></button></a>
                             <a href="{{post.URL2}}"><button class="btn btn-default"><i class="fa fa-github"></i></button></a>
@@ -481,27 +375,10 @@
             </div>
         </div>
     </div>
-</div><!--/modal-->
+</div>
 {% endfor %}
+<!--/modal-->
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{% static "startbootstrap-agency/1.0.4/js/bootstrap.min.js"%}"></script>
-
-<!-- Plugin JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="{% static "startbootstrap-agency/1.0.4/js/classie.js"%}"></script>
-<script src="{% static "startbootstrap-agency/1.0.4/js/cbpAnimatedHeader.js"%}"></script>
-
-<!-- Contact Form JavaScript -->
-<script src="{% static "startbootstrap-agency/1.0.4/js/jqBootstrapValidation.js"%}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{% static "startbootstrap-agency/1.0.4/js/agency.js" %}"></script>
-<script src="{% static "blog/blog.js" %}"></script>
-
-<script src="{% static "jquery.backstretch.min.js"%}"></script>
-<script src="{% static "jquery.toaster.js" %}"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <script>
     $(function() {
@@ -521,5 +398,4 @@
     });
 </script>
 
-</body>
-</html>
+{% endblock %}

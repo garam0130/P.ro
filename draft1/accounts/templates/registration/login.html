@@ -1,13 +1,14 @@
-{% extends "registration/layout.html" %}
-{% load staticfiles %}
-{% load bootstrap3 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-{% load staticfiles %}
-<link rel= "stylesheet" href="{%static "css/styles.css" %}"/>
+{% extends "base.html" %}
+{% load bootstrap3 staticfiles %}
+
 
 
 {% block content%}
+<script>
+$(".navbar.navbar-default.navbar-fixed-top").addClass("navbar-shrink")
+$(".navbar-brand.page-scroll").attr("href","{%url "blog:index" %}")
+$("li .page-scroll").remove()
+</script>
 {% if not user.is_authenticated %}
 <div class = "container">
     <div class="wrapper">

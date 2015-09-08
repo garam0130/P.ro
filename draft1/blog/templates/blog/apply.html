@@ -1,21 +1,47 @@
-<h1 style="text-align: center;">P.rogramming 지원서</h1>
+{% extends "base.html" %}
+{% load bootstrap3 staticfiles %}
 
-{% load bootstrap3 %}
 
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+
+{% block content%}
+<script>
+$(".navbar.navbar-default.navbar-fixed-top").addClass("navbar-shrink")
+$(".navbar-brand.page-scroll").attr("href","{%url "blog:index" %}")
+$("li .page-scroll").remove()
+</script>
+
+<h1 style="text-align: center; margin-top: 100px">P.rogramming 지원서</h1>
 
 <style>
 #apply_form{
     padding-bottom: 5%;
 }
 </style>
+    <form action="" method="POST" enctype="multipart/form-data" style="margin-bottom:50px">
+        <div class = 'container-fluid'>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
 
-<div class="col-xs-12 col-md-4 col-md-offset-4" id="apply_form">
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" value="임시저장" name="_save"/>
-        <input type="submit" value="최종제출" name="_submit"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-md btn-danger btn-block"  type="submit" name="_save">임시저장</button>
+
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-md btn-danger btn-block"  type="submit" name="_submit">최종제출</button>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
     </form>
-</div>
+
+
+{% endblock %}
