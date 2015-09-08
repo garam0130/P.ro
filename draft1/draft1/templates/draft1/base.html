@@ -56,9 +56,12 @@
                 <li><a class="page-scroll" href="#team">Team</a></li>
                 <li><a class="page-scroll" href="#contact">Contact</a></li>
                 {% if not user.is_authenticated %}
-                    <li><a href="{%url "login"%}" >Login</a></li>
-                    <li><a href = {%url "accounts:signup" %}>SignUp</a></li>
+                    <li><a href = "{%url "login"%}" >Login</a></li>
+                    <li><a href = "{%url "accounts:signup" %}">SignUp</a></li>
                 {% else %}
+                    {% if user.is_staff %}
+                    <li><a href = "{%url "blog:profile" %}">Profile</a></li>
+                    {% endif %}
                     <li class="dropdown" id = "dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             {{ user }} <span class="caret"></span>

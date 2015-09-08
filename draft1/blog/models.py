@@ -12,7 +12,8 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
-class Post(models.Model):
+class Profile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=100)
     content = models.TextField()
     photo = models.ImageField()
@@ -64,3 +65,4 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.title
+

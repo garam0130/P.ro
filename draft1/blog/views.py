@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from blog.forms import ContactForm, ApplyForm
-from blog.models import Apply, Post, Activity
+from blog.forms import *
+from blog.models import *
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -10,11 +10,11 @@ from django.contrib import messages
 
 def index(request):
     form = ContactForm()
-    post_list = Post.objects.all()
+    profile_list = Profile.objects.all()
     activity_list = Activity.objects.all()
     params = {
             'form': form,
-            'post_list': post_list,
+            'profile_list': profile_list,
             'activity_list': activity_list,
     }
 
@@ -101,4 +101,19 @@ def thanks(request):
     apply.save()
     return render(request, 'blog/thanks.html', {
         'just_now': just_now,
+    })
+
+@login_required
+def profile(request):
+    profile, is_created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('blog:index')
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'blog/profile.html', {
+        'form': form,
     })

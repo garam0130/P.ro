@@ -1,5 +1,11 @@
 a.navbar-brand.page-scroll {
   color: white;
+  font-family: none;
+}
+
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: transparent;
 }
 
 .control-label {
