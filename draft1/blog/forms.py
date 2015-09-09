@@ -17,3 +17,4 @@ class ApplyForm(ModelForm):
     class Meta:
         model = Apply
         exclude = ('user', 'final_submit', )
+
