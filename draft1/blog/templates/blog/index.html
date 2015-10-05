@@ -6,13 +6,17 @@
         <div class="content">
             <div class="container">
                 <div class="jumbotron">
-                    <h1 style="margin-bottom:100px">피로그래밍</h1>
+                    <img src="{% static "blog/img/pro-main.png" %}" alt="">
+                    <!--<h1 style="margin-bottom:100px">피로그래밍</h1>-->
                     <div class="space-sm"></div>
                     <p></p>
-                    <div class="space-sm"></div>
+                    <div class="space-sm">
+                    <h1><a class="page-scroll" href="#services"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h1></a>
+                    </div>
                     <!--<p>
                         <a href="{% url "blog:apply" %}"><span class="btn btn-primary btn-xl">Apply</span></a>
                     </p>-->
+
                     <div style="height: 60px; overflow: hidden;">
                     </div>
                 </div>
@@ -60,13 +64,15 @@
         </div>
     </section>
 
-    <!-- Activity Section -->
+    <!-- Project Section -->
     <section id="portfolio" class="bg-light-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Activity</h2>
-                    <h3 class="section-subheading text-muted">Pictures of P.rogramming</h3>
+                    <h2 class="section-heading">Project</h2>
+                    <h3 class="section-subheading text-muted">
+                    <!--<a href="/portfolio"><button type="button" class="btn btn-default btn-xs">+ Click </button></a> To see more projects</h3>-->
+
                 </div>
             </div>
             {% for activity in activity_list %}
@@ -385,7 +391,7 @@
         $("#header").backstretch([
             "{% static "blog/img/study.jpg" %}",
             "{% static "blog/img/with_teacher.jpg" %}",
-            "{% static "blog/img/shy.jpg" %}"
+            "{% static "blog/img/shy.jpg" %}",
         ], { duration: 3000, fade: 750 });
 
         {% for message in messages %}
