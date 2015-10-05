@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import datetime
 from django.conf import settings
+import datetime
 
 
 class Migration(migrations.Migration):
@@ -16,10 +16,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EmailToken',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('email', models.EmailField(max_length=255)),
-                ('token', models.CharField(unique=True, max_length=64)),
-                ('key_expires', models.DateTimeField(default=datetime.date(2015, 8, 21))),
+                ('token', models.CharField(max_length=64, unique=True)),
+                ('key_expires', models.DateTimeField(default=datetime.date.today)),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
