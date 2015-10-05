@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'accounts',
     'bootstrap3',
+    'portfolio',
 )
 
 MIDDLEWARE_CLASSES = (
