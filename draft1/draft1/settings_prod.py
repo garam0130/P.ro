@@ -16,3 +16,4 @@ DATABASES = {
         'PASSWORD': 'p_rogramming_db_password',
         'HOST': '127.0.0.1',
     },
+}
