@@ -111,12 +111,16 @@ class Installer(object):
             if self.kwargs['db_host'] == '127.0.0.1':
                 # peer
                 self.command_run('''
+                    sudo -u postgres dropdb --if-exists {db_name}
+                    sudo -u postgres dropuser --if-exists {db_user}
                     sudo -u postgres createdb {db_name} && \
                     sudo -u postgres createuser {db_user} && \
                     echo "ALTER ROLE {db_user} WITH PASSWORD '{db_password}';" | sudo -u postgres psql
                 ''')
             else:
                 self.command_run('''
+                    sudo -u postgres dropdb --if-exists --host={db_host} {db_name}
+                    sudo -u postgres dropuser --if-exists --host={db_host} {db_user}
                     sudo -u postgres createdb --host={db_host} {db_name} && \
                     sudo -u postgres createuser --host={db_host} {db_user} && \
                     echo "ALTER ROLE {db_user} WITH PASSWORD '{db_password}';" | sudo -u postgres psql --host={db_host}
@@ -139,6 +143,7 @@ class Installer(object):
         self.command_run('''
             python3 manage.py collectstatic --noinput --settings={django_settings_module} && \
             python3 manage.py makemigrations --settings={django_settings_module} && \
+            python3 manage.py migrate auth --settings={django_settings_module} && \
             python3 manage.py migrate --settings={django_settings_module}
         ''')
 
