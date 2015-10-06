@@ -11,9 +11,9 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'p_rogramming3k_db',
+        'NAME': 'p_rogramming_db',
         'USER': 'ubuntu',
-        'PASSWORD': 'p_rogramming3k_db_password',
+        'PASSWORD': 'p_rogramming_db_password',
         'HOST': '127.0.0.1',
     },
 }
