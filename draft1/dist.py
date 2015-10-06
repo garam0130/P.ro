@@ -143,6 +143,7 @@ class Installer(object):
         self.command_run('''
             python3 manage.py collectstatic --noinput --settings={django_settings_module} && \
             python3 manage.py makemigrations --settings={django_settings_module} && \
+            python3 manage.py migrate auth --settings={django_settings_module} && \
             python3 manage.py migrate --settings={django_settings_module}
         ''')
 
