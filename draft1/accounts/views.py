@@ -42,7 +42,7 @@ def signup(request):
 
 
         email_subject = 'Account confirmation'
-        email_body = "Hey %s, thanks for signing up. To activate your account, click this link in 48 hours \n http://127.0.0.1:8000/accounts/confirm/%s" % (email, TOKEN.token)
+        email_body = "Hey %s, thanks for signing up. To activate your account, click this link in 48 hours \n http://54.64.112.21/accounts/confirm/%s" % (email, TOKEN.token)
         send_mail(email_subject, email_body, 'p.rogramming3k@gmail.com',
     [email], fail_silently=False)
         return HttpResponseRedirect('/accounts/signup/complete')

@@ -14,33 +14,6 @@ a.navbar-brand.page-scroll {
 
 .modal-footer { border-top: 0px; }
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (max-width: 979px) {
-
-  #header {
-    height: 500px;
-  }
-
-
-}
-
-
-
-#header > .content .jumbotron {
-    margin: 100px 0;
-}
-
-.jumbotron {
-    background-color: transparent;
-}
-
-.jumbotron> h1{
-    margin:50px;
-    padding-top:100px;
-}
-
 
 #loginModal {
     width: 45%;

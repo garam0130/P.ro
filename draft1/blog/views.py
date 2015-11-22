@@ -42,10 +42,10 @@ def index(request):
                 fail_silently=False)
             messages.success(request,'이메일이 보내졌습니다.')
 
-            return HttpResponseRedirect('/contact/')
+            return HttpResponseRedirect('/')
         else:
             messages.warning(request,'올바른 이메일 주소를 입력해주세요.')
-            return HttpResponseRedirect('/contact/#contact')
+            return HttpResponseRedirect('/#contact')
 
     return render(request, 'blog/index.html', params)
 
