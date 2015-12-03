@@ -75,7 +75,9 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{{ activity.photo.url }}" class="img-responsive" alt="">
+                        {% thumbnail activity.photo "390x300" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive" alt="">
+                        {% endthumbnail %}
                     </a>
                     <div class="portfolio-caption">
                         <h4>{{ activity.title }}</h4>
