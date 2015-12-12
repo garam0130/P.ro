@@ -42,7 +42,7 @@ def signup(request):
 
 
         email_subject = 'Account confirmation'
-        email_body = "안녕하세요 %s, 가입해주셔서 감사합니다. 계정을 활성화시키기 위해서는 48시간 이내에"+"<a href = http://52.68.64.186/accounts/confirm/%s>링크</a>"+"를 클릭해주세요." % (email, TOKEN.token)
+        email_body = "안녕하세요 %s, 가입해주셔서 감사합니다. 계정을 활성화시키기 위해서는 48시간 이내에 <a href = http://52.68.64.186/accounts/confirm/%s>링크</a>를 클릭해주세요." % (email, TOKEN.token)
         send_mail(email_subject, email_body, 'p.rogramming3k@gmail.com',
     [email], fail_silently=False)
         return HttpResponseRedirect('/accounts/signup/complete')
