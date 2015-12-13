@@ -4,14 +4,14 @@
 <header>
     <div id="header" style = "height: 100vh; width: 100vw; margin: 0;">
 
-                    <!-- <img src="{% static "blog/img/pro-main.png" %}" alt=""> #}
+                    {# <img src="{% static "blog/img/pro-main.png" %}" alt=""> #}
 
-                    <div class="space-sm">
-                    <h1><a class="page-scroll" href="#services"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h1></a>
+                    <div class="space-sm" style="padding-top: 70vh;">
+                        <h1><a class="page-scroll" href="#services"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h1></a>
+                        <p>
+                            <a href="{% url "blog:apply" %}"><span class="btn btn-primary btn-xl">지원하기</span></a>
+                        </p>
                     </div>
-                    <p>
-                        <a href="{% url "blog:apply" %}"><span class="btn btn-primary btn-xl">Apply</span></a>
-                    </p>-->
 
     </div>
 </header>
@@ -400,6 +400,7 @@
             });
         {% endfor %}
     });
+
 </script>
 
 {% endblock %}
