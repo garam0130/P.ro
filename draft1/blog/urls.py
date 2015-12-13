@@ -4,5 +4,6 @@ urlpatterns = [
     url(r'^$', 'blog.views.index', name='index'),
     url(r'^apply/$', 'blog.views.apply', name='apply'),
     url(r'^apply/thanks/$', 'blog.views.thanks', name='thanks'),
-    url(r'^profile/$','blog.views.profile', name='profile'),
+    url(r'^practice/$', 'blog.views.practice', name='practice'),
+    url(r'^profile/$', 'blog.views.profile', name='profile'),
 ]

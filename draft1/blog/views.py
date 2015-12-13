@@ -50,46 +50,47 @@ def index(request):
     return render(request, 'blog/index.html', params)
 
 
-@login_required
+# @login_required
 def apply(request):
-    user = request.user
-    apply_exist = Apply.objects.filter(user=user).exists()
+    # user = request.user
+    # apply_exist = Apply.objects.filter(user=user).exists()
 
-    if request.method == "POST":
+    # if request.method == "POST":
 
 
-        if apply_exist:
-            apply = Apply.objects.get(user=user)
-            form = ApplyForm(request.POST, instance=apply)
-        else:
-            form = ApplyForm(request.POST)
+    #     if apply_exist:
+    #         apply = Apply.objects.get(user=user)
+    #         form = ApplyForm(request.POST, instance=apply)
+    #     else:
+    #         form = ApplyForm(request.POST)
 
-        if form.is_valid():
-            apply = form.save(commit=False)
-            apply.user = request.user
-            if '_save' in request.POST:
-                apply.save()
-                messages.success(request,'지원서가 임시저장 되었습니다.')
-                return redirect('blog:index')
-            if '_submit' in request.POST:
-                apply.save()
-                messages.success(request,'지원 감사합니다.')
-                return redirect('blog:thanks')
+    #     if form.is_valid():
+    #         apply = form.save(commit=False)
+    #         apply.user = request.user
+    #         if '_save' in request.POST:
+    #             apply.save()
+    #             messages.success(request,'지원서가 임시저장 되었습니다.')
+    #             return redirect('blog:index')
+    #         if '_submit' in request.POST:
+    #             apply.save()
+    #             messages.success(request,'지원 감사합니다.')
+    #             return redirect('blog:thanks')
 
-    else:
-        if apply_exist:
-            apply = Apply.objects.get(user=user)
-            if apply.final_submit:
-                # form = ApplyForm(instance=apply)
-                return redirect('blog:thanks')
-            else:
-                form = ApplyForm(instance=apply)
-        else:
-            form = ApplyForm()
+    # else:
+    #     if apply_exist:
+    #         apply = Apply.objects.get(user=user)
+    #         if apply.final_submit:
+    #             # form = ApplyForm(instance=apply)
+    #             return redirect('blog:thanks')
+    #         else:
+    #             form = ApplyForm(instance=apply)
+    #     else:
+    #         form = ApplyForm()
 
-    return render(request, 'blog/apply.html', {
-        'form': form,
-    })
+    # return render(request, 'blog/apply.html', {
+    #     'form': form,
+    # })
+    return render(request, 'blog/apply.html')
 
 
 @login_required
@@ -117,3 +118,6 @@ def profile(request):
     return render(request, 'blog/profile.html', {
         'form': form,
     })
+
+def practice(request):
+    return render(request, 'blog/practice.html')
