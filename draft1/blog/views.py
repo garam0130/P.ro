@@ -39,7 +39,7 @@ def index(request):
                 contact_message,
                 from_email,
                 to_email,
-                fail_silently=False)
+                fail_silently=False,)
             messages.success(request,'이메일이 보내졌습니다.')
 
             return HttpResponseRedirect('/')
