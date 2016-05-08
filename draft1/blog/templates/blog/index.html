@@ -247,7 +247,7 @@
                             </div>
                         </div>
                         {% thumbnail project.photo "390x300" crop="center" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive" alt="">
+                        <a href="{{project.url}}" ><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive" alt=""></a>
                         {% endthumbnail %}
                     </a>
                     <div class="portfolio-caption">
