@@ -12,10 +12,12 @@ def index(request):
     form = ContactForm()
     profile_list = Profile.objects.all()
     activity_list = Activity.objects.all()
+    project_list = Project.objects.all()
     params = {
             'form': form,
             'profile_list': profile_list,
             'activity_list': activity_list,
+            'project_list': project_list,
     }
 
     if request.method == 'POST':
