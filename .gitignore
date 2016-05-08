@@ -49,3 +49,4 @@ draft1/accounts/migrations/
 __pycache__
 **/media
 /staticfiles
+**/migrations
