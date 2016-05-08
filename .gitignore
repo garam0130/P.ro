@@ -47,5 +47,5 @@ draft1/accounts/migrations/
 *.pyc
 *.sqlite3
 __pycache__
-/media
+**/media
 /staticfiles
