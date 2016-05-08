@@ -10,80 +10,23 @@
 <title>P.rogramming</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="{% static "startbootstrap-agency/1.0.4/css/bootstrap.css" %}" rel="stylesheet" />
+<link href="{% static "bootstrap/3.3.5/css/bootstrap.min.css" %}" rel="stylesheet" />
 
 </head>
-
-{# {% block content%} #}
-
 <body>
     <br><br><br>
     <a href="{% url "blog:index" %}"><p style="text-align: center; font-size: 24px;">홈페이지로 돌아가기</p></a>
 
     <div style="margin: auto; width: 600px;">
         <strong><p>서류 마감기한:</p></strong>
-        <p>12월 24일(목) 23:59</p>
+        <p>6월 20일(월) 23:59</p>
         <strong><p>서류 발표:</p></strong>
-        <p>12월 25일(금) (결과는 문자로 개별 통보)</p>
+        <p>6월 22일(수) (결과는 문자로 개별 통보)</p>
         <strong><p>면접일:</p></strong>
-        <p>12월 27일(토) (서울대학교 58동 경영대, 구체적인 장소는 문자로 공지)</p>
-        <strong><p>워크샵(필수):</p></strong>
-        <p>12월 28일(월) - 12월 29일(화)</p>
+        <p>6월 24일(금) (서울대학교 58동 경영대, 구체적인 장소는 문자로 공지)</p>
+        <strong><p>오리엔테이션(필수):</p></strong>
+        <p>6월 25일(토) - 6월 26일(일)</p>
     </div>
-    {% comment %}
-    <ul class="list-group">
-        <li class="list-group-item"><strong>서류 마감기한:</strong> 12월 24일(목) 23:59</li>
-        <li class="list-group-item"><strong>서류 발표:</strong> 12월 25일(금)(결과는 문자로 개별 통보)</li>
-        <li class="list-group-item"><strong면접일: 12월 27일(토) (서울대학교 58동 경영대, 구체적인 장소는 문자로 공지)</li>
-        <li class="list-group-item">워크샵(필수): 12월 28일(월) - 12월 29일(화)</li>
-    </ul>
-    {% endcomment %}
-
 </body>
+<script type="text/javascript" src="https://form.jotform.me/jsform/61278329834464"></script>
 
-
-<script type="text/javascript" src="https://form.jotform.me/jsform/53455055956463"></script>
-
-
-{% comment %}
-<script>
-$(".navbar.navbar-default.navbar-fixed-top").addClass("navbar-shrink")
-$(".navbar-brand.page-scroll").attr("href","{%url "blog:index" %}")
-$("li .page-scroll").remove()
-</script>
-
-<h1 style="text-align: center; margin-top: 100px">P.rogramming 지원서</h1>
-
-<style>
-#apply_form{
-    padding-bottom: 5%;
-}
-</style>
-    <form action="" method="POST" enctype="multipart/form-data" style="margin-bottom:50px">
-        <div class = 'container-fluid'>
-            <div class="row">
-                <div class="col-md-offset-4 col-md-4">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button class="btn btn-md btn-danger btn-block"  type="submit" name="_save">임시저장</button>
-
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-md btn-danger btn-block"  type="submit" name="_submit">최종제출</button>
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-
-    </form>
-{% endcomment %}
-
-{# {% endblock %} #}
