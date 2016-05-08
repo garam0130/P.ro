@@ -175,6 +175,34 @@
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/gogi.jpg" %}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>AUGUST 2015</h4>
+                                    <h4 class="subheading">P.rogramming 3rd</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Hackathon@G-House <br>감동적인 고기와 충격의 핫식스.<br>뜬 눈으로 밤을 지새웠다.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{% static "blog/img/about/3.jpg" %}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>FEB 2015</h4>
+                                    <h4 class="subheading">Be The Unicorn</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">첫 해커톤이 열렸다.<br>코드네임 <em>Be The Unicorn.</em><br>그리고 6개의 웹 서비스가 만들어졌다.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
                                 <img class="img-circle img-responsive" src="{% static "blog/img/about/6.jpg" %}" alt="">
                             </div>
                         </li>
@@ -386,10 +414,10 @@
 <script>
     $(function() {
         $("#header").backstretch([
-            "{% static "blog/img/all.jpg" %}",
-            "{% static "blog/img/study.jpg" %}",
-            "{% static "blog/img/with_teacher.jpg" %}",
-            "{% static "blog/img/shy.jpg" %}",
+            "{% static "blog/img/lecture5.jpg" %}",
+            "{% static "blog/img/study2.jpg" %}",
+            "{% static "blog/img/hackathon.jpg" %}",
+            "{% static "blog/img/hackathon2.jpg" %}",
         ], { duration: 3000, fade: 750 });
 
         {% for message in messages %}
