@@ -94,6 +94,13 @@ a.navbar-brand.page-scroll {
 
 #project * {
     z-index: 2;
+
+a:link{color:black;}
+a:visited{color:green;}
+a:hover{color: blue;}
+a:active{color: red;}
+
+
 }
 
 @media(min-width:767px) {
