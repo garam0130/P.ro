@@ -18,7 +18,7 @@ class QuizAuthenticationForm(AuthenticationForm):
 
     def clean_question(self):
         answer = self.cleaned_data.get('question','')
-        if answer != '4':
+        if answer != '5':
             raise forms.ValidationError('틀렸어요ㅠㅠ')
 
 class UserSignUpForm(UserCreationForm):
