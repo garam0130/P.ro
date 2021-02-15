@@ -27,11 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'garam0130@gmail.com'
-EMAIL_HOST_PASSWORD = 'jggs9901'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -42,7 +37,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    'sorl.thumbnail',
+    'accounts',
+    'bootstrap3',
+    'portfolio',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +60,9 @@ ROOT_URLCONF = 'draft1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'draft1', 'templates', 'draft1'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,10 +107,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'project', 'static'),
+    os.path.join(BASE_DIR, 'draft1', 'static'),
 ]
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+try:
+    from django.core.urlresolvers import reverse_lazy
+    LOGIN_REDIRECT_URL = reverse_lazy('blog:index')
+except ImportError:
+    pass
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'p.rogramming3k@gmail.com'
+EMAIL_HOST_PASSWORD = 'fzhrnlbdyxkbasfb'

@@ -1,0 +1,32 @@
+{# {% extends "base.html" %} #}
+{% load bootstrap3 staticfiles %}
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="author" content="P.rogramming" />
+<meta name="description" content="official web site" />
+<title>P.rogramming</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="{% static "bootstrap/3.3.5/css/bootstrap.min.css" %}" rel="stylesheet" />
+
+</head>
+<body>
+    <br><br><br>
+    <a href="{% url "blog:index" %}"><p style="text-align: center; font-size: 24px;">홈페이지로 돌아가기</p></a>
+
+    <div style="margin: auto; width: 600px;">
+        <strong><p>서류 마감기한:</p></strong>
+        <p>6월 20일(월) 23:59</p>
+        <strong><p>서류 발표:</p></strong>
+        <p>6월 22일(수) (결과는 문자로 개별 통보)</p>
+        <strong><p>면접일:</p></strong>
+        <p>6월 24일(금) (서울대학교 58동 경영대, 구체적인 장소는 문자로 공지)</p>
+        <strong><p>오리엔테이션(필수):</p></strong>
+        <p>6월 25일(토) - 6월 26일(일)</p>
+    </div>
+</body>
+<script type="text/javascript" src="https://form.jotform.me/jsform/61278329834464"></script>
+

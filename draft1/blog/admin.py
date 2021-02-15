@@ -1,5 +1,8 @@
 from django.contrib import admin
-from blog.models import Contact
+from blog.models import *
 
 admin.site.register(Contact)
-# Register your models here.
+admin.site.register(Profile)
+admin.site.register(Apply)
+admin.site.register(Activity)
+admin.site.register(Project)

@@ -1,0 +1,22 @@
+﻿가람
+-폰트, 로고, 배경
+
+빛나누나
+-hover, 팀원
+
+근우
+-backstretch
+
+창현
+-login 끄적끄적
+
+
+
+
+
+#More
+-login, 회원가입, 프로필 수정
+-각 Portfolio 문서들을 model 로 만듬
+
+
+wow!
